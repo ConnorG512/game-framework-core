@@ -2,6 +2,7 @@
 
 #include <span>
 #include <SDL3/SDL_init.h>
+#include <string>
 
 namespace Init
 {
@@ -15,6 +16,12 @@ namespace Init
     EVENTS = SDL_INIT_EVENTS,
     SENSOR = SDL_INIT_SENSOR,
     CAMERA = SDL_INIT_CAMERA,
+  };
+  
+  struct Metadata {
+    const std::string& name {};
+    const std::string& version {};
+    const std::string& identifier {};
   };
 
   class Instance {
