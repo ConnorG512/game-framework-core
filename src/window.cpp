@@ -24,7 +24,7 @@ Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_current_window_size() noexcept
+Window::Instance::get_current_window_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_size\"");
 
@@ -41,7 +41,7 @@ Window::Instance::get_current_window_size() noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_current_window_position() noexcept
+Window::Instance::get_current_window_position() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -55,7 +55,7 @@ Window::Instance::get_current_window_position() noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_max_size() noexcept
+Window::Instance::get_max_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -72,7 +72,7 @@ Window::Instance::get_max_size() noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_min_size() noexcept
+Window::Instance::get_min_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -85,13 +85,13 @@ Window::Instance::get_min_size() noexcept
     return std::make_pair(x, y);
 }
 
-[[nodiscard]] std::expected<SDL_WindowID, std::string> Window::Instance::get_id() noexcept
+[[nodiscard]] std::expected<SDL_WindowID, std::string> Window::Instance::get_id() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_id\"");
-  
-  const auto window_id {SDL_GetWindowID(window_instance_.get())};
-  if(window_id == 0)
+
+  const auto window_id{SDL_GetWindowID(window_instance_.get())};
+  if (window_id == 0)
     return std::unexpected(std::format("Window Error: {}", SDL_GetError()));
-  else 
+  else
     return window_id;
 }
