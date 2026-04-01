@@ -48,6 +48,7 @@ public:
   get_current_window_position() noexcept;
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_max_size() noexcept;
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_min_size() noexcept;
+  [[nodiscard]] std::expected<SDL_WindowID, std::string> get_id() noexcept;
 
 private:
   Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy, const std::span<const Flags> flags);

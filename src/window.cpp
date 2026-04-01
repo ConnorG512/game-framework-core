@@ -84,3 +84,14 @@ Window::Instance::get_min_size() noexcept
   else
     return std::make_pair(x, y);
 }
+
+[[nodiscard]] std::expected<SDL_WindowID, std::string> Window::Instance::get_id() noexcept
+{
+  assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_id\"");
+  
+  const auto window_id {SDL_GetWindowID(window_instance_.get())};
+  if(window_id == 0)
+    return std::unexpected(std::format("Window Error: {}", SDL_GetError()));
+  else 
+    return window_id;
+}
