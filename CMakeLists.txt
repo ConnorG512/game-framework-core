@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(GameFrameworkWindow CXX)
+project(GameFrameworkCore CXX)
 
 set(EXECUTABLE_NAME game-framework-core)
 
