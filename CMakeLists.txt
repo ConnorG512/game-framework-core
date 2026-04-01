@@ -9,13 +9,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Submodules:
 add_subdirectory(external/sdl3)
 
-add_executable(${EXECUTABLE_NAME} 
+add_library(${EXECUTABLE_NAME} STATIC 
   src/window.cpp
 )
 
 target_link_libraries(${EXECUTABLE_NAME} PRIVATE
   # Libraries:
-  sdl3
+  SDL3::SDL3
 )
 target_include_directories(${EXECUTABLE_NAME} PRIVATE 
   "${CMAKE_SOURCE_DIR}/include"
