@@ -1,6 +1,5 @@
 #pragma once
 
-#include <expected>
 #include <span>
 #include <type_traits>
 #include <utility>
@@ -13,22 +12,12 @@ concept EnumClass = std::is_enum_v<T>;
 template <typename T>
 concept Number = std::is_integral_v<T>;
 
-enum class OrErrors
+template <EnumClass FlagSet, Number OrType> OrType or_flags(std::span<FlagSet> flags) noexcept
 {
-  FLAG_SET_EMPTY,
-};
-template <EnumClass FlagSet, Number OrType> std::expected<OrType, OrErrors> or_flags(std::span<FlagSet> flags) noexcept
-{
-  if (flags.empty())
-    return std::unexpected(OrErrors::FLAG_SET_EMPTY);
+  OrType result{0};
+  for (const auto &flag : flags)
+    result |= std::to_underlying(flag);
 
-  return [flags]
-  {
-    OrType result{0};
-    for (const auto &flag : flags)
-      result |= std::to_underlying(flag);
-
-    return result;
-  }();
+  return result;
 }
 } // namespace Utils
