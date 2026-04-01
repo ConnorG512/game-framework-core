@@ -2,7 +2,7 @@
 
 namespace
 {
-auto or_flags = [](const std::span<Window::Instance::Flags> flags)
+auto or_flags = [](const std::span<Window::Flags> flags)
 {
   auto result{0};
   for (const auto &flag : flags)
