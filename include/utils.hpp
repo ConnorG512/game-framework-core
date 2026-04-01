@@ -14,7 +14,7 @@ template <EnumClass T> auto or_flags(std::span<T> flags)
   if (flags.empty())
     return;
 
-  return [flags]()
+  return [flags]
   {
     auto result{0};
     for (const auto &flag : flags)
