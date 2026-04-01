@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(external/sdl3)
 
 add_library(${EXECUTABLE_NAME} STATIC 
+  src/init.cpp
   src/window.cpp
 )
 
