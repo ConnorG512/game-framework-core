@@ -10,8 +10,9 @@
 Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy,
                            const std::span<const Flags> flags)
     : title{title.c_str()}, xy_{xy.first, xy.second},
-      window_instance_{SDL_CreateWindow(title.c_str(), xy_.first, xy_.second, Utils::or_flags(flags)),
-                       &SDL_DestroyWindow}
+      window_instance_{
+          SDL_CreateWindow(title.c_str(), xy_.first, xy_.second, Utils::or_flags<Flags, SDL_WindowFlags>(flags)),
+          &SDL_DestroyWindow}
 {
 }
 
