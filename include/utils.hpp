@@ -12,7 +12,7 @@ concept EnumClass = std::is_enum_v<T>;
 template <typename T>
 concept Number = std::is_integral_v<T>;
 
-template <EnumClass FlagSet, Number OrType> OrType or_flags(std::span<FlagSet> flags) noexcept
+template <EnumClass FlagSet, Number OrType> OrType or_flags(const std::span<const FlagSet> flags) noexcept
 {
   OrType result{0};
   for (const auto &flag : flags)
