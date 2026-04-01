@@ -1,6 +1,6 @@
-#include "window.hpp"
 #include "SDL3/SDL_error.h"
 #include "SDL3/SDL_video.h"
+#include "window.hpp"
 #include <cassert>
 #include <format>
 #include <utility>
