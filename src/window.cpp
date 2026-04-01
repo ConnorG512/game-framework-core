@@ -23,16 +23,21 @@ Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std
 {
 }
 
-[[nodiscard]] std::pair<std::int32_t, std::int32_t> Window::Instance::get_current_window_size() noexcept
+[[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
+Window::Instance::get_current_window_size() noexcept
 {
-  std::int32_t width{0};
-  std::int32_t height{0};
+  assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_size\"");
 
-  SDL_GetWindowSize(window_instance_.get(), &width, &height);
+  auto width{0};
+  auto height{0};
 
-  assert(width > 0);
-  assert(height > 0);
-  return {width, height};
+  if (SDL_GetWindowSize(window_instance_.get(), &width, &height))
+    return std::unexpected(std::format("Window Error: {}", SDL_GetError()));
+  else
+  {
+    assert(width > 0 && height > 0 && "Width or heght holds a value of [0] in \"get_current_window_size\"");
+    return std::make_pair(width, height);
+  }
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
