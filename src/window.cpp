@@ -1,25 +1,17 @@
 #include "SDL3/SDL_error.h"
 #include "SDL3/SDL_video.h"
+#include "utils.hpp"
+
 #include "window.hpp"
 #include <cassert>
 #include <format>
 #include <utility>
 
-namespace
-{
-auto or_flags = [](const std::span<const Window::Flags> flags)
-{
-  auto result{0};
-  for (const auto &flag : flags)
-    result |= std::to_underlying(flag);
-  return result;
-};
-} // namespace
-
 Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy,
                            const std::span<const Flags> flags)
     : title{title.c_str()}, xy_{xy.first, xy.second},
-      window_instance_{SDL_CreateWindow(title.c_str(), xy_.first, xy_.second, or_flags(flags)), &SDL_DestroyWindow}
+      window_instance_{SDL_CreateWindow(title.c_str(), xy_.first, xy_.second, Utils::or_flags(flags)),
+                       &SDL_DestroyWindow}
 {
 }
 
