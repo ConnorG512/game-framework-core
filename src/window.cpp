@@ -53,3 +53,34 @@ Window::Instance::get_current_window_position() noexcept
   else
     return std::make_pair(x, y);
 }
+
+[[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
+Window::Instance::get_max_size() noexcept
+{
+  assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
+
+  auto x{0};
+  auto y{0};
+
+  if (!SDL_GetWindowMaximumSize(window_instance_.get(), &x, &y))
+    return std::unexpected(std::format("Window Error: {}", SDL_GetError()));
+  else
+  {
+    assert(x > 0 && y > 0 && "Width or heght holds a value of [0] in \"get_max_size\"");
+    return std::make_pair(x, y);
+  }
+}
+
+[[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
+Window::Instance::get_min_size() noexcept
+{
+  assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
+
+  auto x{0};
+  auto y{0};
+
+  if (!SDL_GetWindowMinimumSize(window_instance_.get(), &x, &y))
+    return std::unexpected(std::format("Window Error: {}", SDL_GetError()));
+  else
+    return std::make_pair(x, y);
+}
