@@ -48,7 +48,7 @@ public:
   get_current_window_position() noexcept;
 
 private:
-  Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy, const std::span<Flags> flags);
+  Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy, const std::span<const Flags> flags);
 
   std::pair<std::int32_t, std::int32_t> xy_{1280, 720};
   std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_instance_{
