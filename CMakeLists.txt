@@ -15,6 +15,7 @@ add_library(${LIB_NAME} STATIC
   src/event-poll.cpp
   src/utils.cpp
   src/window.cpp
+  src/logging.cpp
 )
 
 target_link_libraries(${LIB_NAME} PUBLIC
