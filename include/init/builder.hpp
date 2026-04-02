@@ -17,10 +17,10 @@ class Builder
   friend class Init::Instance;
 
 public:
-  consteval Builder &set_app_name(const char *name) noexcept;
-  consteval Builder &set_app_version(const char *version) noexcept;
-  consteval Builder &set_app_identifier(const char *id) noexcept;
-  consteval Builder &set_flags(const std::span<const Flags> flags) noexcept;
+  constexpr Builder &set_app_name(const char *name) noexcept;
+  constexpr Builder &set_app_version(const char *version) noexcept;
+  constexpr Builder &set_app_identifier(const char *id) noexcept;
+  constexpr Builder &set_flags(const std::span<const Flags> flags) noexcept;
   Init::Instance build(std::function<void(const std::string &message)> log_callback) const noexcept;
 
 private:
