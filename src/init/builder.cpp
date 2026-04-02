@@ -31,4 +31,4 @@ consteval Init::Builder &Init::Builder::set_flags(const std::span<const Flags> f
   return *this;
 }
 
-Init::Instance Init::Builder::build() { return Instance(*this); }
+Init::Instance Init::Builder::build() { return Init::Instance(*this, nullptr); }
