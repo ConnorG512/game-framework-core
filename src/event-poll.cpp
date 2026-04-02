@@ -1,4 +1,3 @@
-#include "SDL3/SDL_events.h"
 #include "event-poll.hpp"
 
 void Event::poll(bool finished, const std::span<const SDL_Event> event_list)
