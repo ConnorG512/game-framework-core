@@ -17,7 +17,7 @@ add_library(${LIB_NAME} STATIC
   src/window.cpp
 )
 
-target_link_libraries(${LIB_NAME} PRIVATE
+target_link_libraries(${LIB_NAME} PUBLIC
   # Libraries:
   SDL3::SDL3
 )
