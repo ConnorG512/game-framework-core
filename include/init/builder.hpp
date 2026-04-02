@@ -3,6 +3,7 @@
 #include <span>
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace Init
 {
@@ -20,7 +21,7 @@ public:
   consteval Builder &set_app_version(const char *version) noexcept;
   consteval Builder &set_app_identifier(const char *id) noexcept;
   consteval Builder &set_flags(const std::span<const Flags> flags) noexcept;
-  Init::Instance build();
+  Init::Instance build(std::function<void(const std::string &message)> log_callback);
 
 private:
   std::string app_name_{"Application"};

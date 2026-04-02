@@ -31,4 +31,7 @@ consteval Init::Builder &Init::Builder::set_flags(const std::span<const Flags> f
   return *this;
 }
 
-Init::Instance Init::Builder::build() { return Init::Instance(*this, nullptr); }
+Init::Instance Init::Builder::build(std::function<void(const std::string &message)> log_callback = nullptr)
+{
+  return Init::Instance(*this, log_callback);
+}
