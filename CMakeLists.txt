@@ -22,7 +22,7 @@ target_link_libraries(${LIB_NAME} PRIVATE
   SDL3::SDL3
 )
 target_include_directories(${LIB_NAME} PUBLIC 
-  "${CMAKE_SOURCE_DIR}/include"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
 install(TARGETS ${LIB_NAME} RUNTIME DESTINATION bin)
