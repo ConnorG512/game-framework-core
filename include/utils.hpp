@@ -1,6 +1,7 @@
 #pragma once
 
 #include <span>
+#include <string>
 #include <type_traits>
 #include <utility>
 
@@ -20,4 +21,6 @@ template <EnumClass FlagSet, Number OrType> OrType or_flags(const std::span<cons
 
   return result;
 }
+
+std::string get_version() noexcept;
 } // namespace Utils
