@@ -2,28 +2,28 @@
 #include "init/instance.hpp"
 #include <cassert>
 
-constexpr Init::Builder &Init::Builder::set_app_name(const char *name) noexcept
+Init::Builder &Init::Builder::set_app_name(const char *name) noexcept
 {
   app_name_ = name;
   assert(name != nullptr);
   return *this;
 }
 
-constexpr Init::Builder &Init::Builder::set_app_version(const char *version) noexcept
+Init::Builder &Init::Builder::set_app_version(const char *version) noexcept
 {
   app_version_ = version;
   assert(version != nullptr);
   return *this;
 }
 
-constexpr Init::Builder &Init::Builder::set_app_identifier(const char *id) noexcept
+Init::Builder &Init::Builder::set_app_identifier(const char *id) noexcept
 {
   app_identifier_ = id;
   assert(id != nullptr);
   return *this;
 }
 
-constexpr Init::Builder &Init::Builder::set_flags(const std::span<const Flags> flags) noexcept
+Init::Builder &Init::Builder::set_flags(const std::span<const Flags> flags) noexcept
 {
   for (const auto &flag : flags)
     flags_.emplace_back(flag);
