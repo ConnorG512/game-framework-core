@@ -21,7 +21,7 @@ target_link_libraries(${EXECUTABLE_NAME} PRIVATE
   # Libraries:
   SDL3::SDL3
 )
-target_include_directories(${EXECUTABLE_NAME} PRIVATE 
+target_include_directories(${EXECUTABLE_NAME} PUBLIC 
   "${CMAKE_SOURCE_DIR}/include"
 )
 
