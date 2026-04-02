@@ -50,10 +50,10 @@ public:
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_max_size() const noexcept;
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_min_size() const noexcept;
   [[nodiscard]] std::expected<SDL_WindowID, std::string> get_id() const noexcept;
-
-private:
+  
   Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy, const std::span<const Flags> flags);
 
+private:
   std::pair<std::int32_t, std::int32_t> xy_{1280, 720};
   std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_instance_{
       SDL_CreateWindow(title, xy_.first, xy_.second, 0), &SDL_DestroyWindow};
