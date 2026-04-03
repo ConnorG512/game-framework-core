@@ -4,7 +4,7 @@
 #include <functional>
 #include <string>
 
-namespace Init
+namespace GFC::Init
 {
 // Forward
 class Builder;
@@ -25,7 +25,7 @@ enum class Flags
 class Instance
 {
 public:
-  Instance(const Init::Builder &builder, std::function<void(const std::string &message)> log_callback);
+  Instance(const GFC::Init::Builder &builder, std::function<void(const std::string &message)> log_callback);
   ~Instance();
 };
-} // namespace Init
+} // namespace GFC::Init

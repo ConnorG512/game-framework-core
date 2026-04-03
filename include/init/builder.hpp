@@ -1,11 +1,11 @@
 #pragma once
 
+#include <functional>
 #include <span>
 #include <string>
 #include <vector>
-#include <functional>
 
-namespace Init
+namespace GFC::Init
 {
 // Forward
 class Instance;
@@ -29,4 +29,4 @@ private:
   std::string app_identifier_{"com.example.application"};
   std::vector<Flags> flags_{};
 };
-} // namespace Init
+} // namespace GFC::Init
