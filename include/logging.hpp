@@ -16,6 +16,8 @@ public:
     DEBUG,
     INFO,
   };
+  explicit Instance(const std::string &file_path);
+
   [[nodiscard]] std::expected<void, std::string_view> write_to_logger(const std::string &message,
                                                                       InfoType prefix_type) noexcept;
 

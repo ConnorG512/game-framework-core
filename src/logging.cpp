@@ -3,6 +3,8 @@
 #include <format>
 #include <print>
 
+GFC::Logger::Instance::Instance(const std::string &file_path) : file_(file_path) {}
+
 [[nodiscard]] std::expected<void, std::string_view>
 GFC::Logger::Instance::write_to_logger(const std::string &message, InfoType prefix_type) noexcept
 {
