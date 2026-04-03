@@ -17,6 +17,7 @@ add_library(${LIB_NAME} STATIC
   src/window.cpp
   src/logging.cpp
   src/renderer.cpp
+  src/filesystem.cpp
 )
 
 target_link_libraries(${LIB_NAME} PUBLIC
