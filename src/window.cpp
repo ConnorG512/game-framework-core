@@ -7,8 +7,8 @@
 #include <format>
 #include <utility>
 
-Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy,
-                           const std::span<const Flags> flags)
+GFC::Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy,
+                                const std::span<const Flags> flags)
     : title{title.c_str()}, xy_{xy.first, xy.second},
       window_instance_{
           SDL_CreateWindow(title.c_str(), xy_.first, xy_.second, Utils::or_flags<Flags, SDL_WindowFlags>(flags)),
@@ -17,7 +17,7 @@ Window::Instance::Instance(const std::string &title, std::pair<std::int32_t, std
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_current_window_size() const noexcept
+GFC::Window::Instance::get_current_window_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_size\"");
 
@@ -34,7 +34,7 @@ Window::Instance::get_current_window_size() const noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_current_window_position() const noexcept
+GFC::Window::Instance::get_current_window_position() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -48,7 +48,7 @@ Window::Instance::get_current_window_position() const noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_max_size() const noexcept
+GFC::Window::Instance::get_max_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -65,7 +65,7 @@ Window::Instance::get_max_size() const noexcept
 }
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
-Window::Instance::get_min_size() const noexcept
+GFC::Window::Instance::get_min_size() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_current_window_position\"");
 
@@ -78,7 +78,7 @@ Window::Instance::get_min_size() const noexcept
     return std::make_pair(x, y);
 }
 
-[[nodiscard]] std::expected<SDL_WindowID, std::string> Window::Instance::get_id() const noexcept
+[[nodiscard]] std::expected<SDL_WindowID, std::string> GFC::Window::Instance::get_id() const noexcept
 {
   assert(window_instance_ != nullptr && "window_instance_ is null during function \"get_id\"");
 
@@ -89,7 +89,7 @@ Window::Instance::get_min_size() const noexcept
     return window_id;
 }
 
-[[nodiscard]] SDL_Window &Window::Instance::get_window_reference() noexcept
+[[nodiscard]] SDL_Window &GFC::Window::Instance::get_window_reference() noexcept
 {
   assert(!window_instance_ && "window_instance_ is nullptr! Cannot get reference.");
   return *window_instance_.get();

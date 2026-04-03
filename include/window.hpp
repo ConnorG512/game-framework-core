@@ -9,7 +9,7 @@
 #include <span>
 #include <utility>
 
-namespace Window
+namespace GFC::Window
 {
 enum class Flags : std::uint64_t
 {
@@ -59,4 +59,4 @@ private:
   std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_instance_{
       SDL_CreateWindow(title, xy_.first, xy_.second, 0), &SDL_DestroyWindow};
 };
-}; // namespace Window
+}; // namespace GFC::Window
