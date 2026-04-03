@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace Utils
+namespace GFC::Utils
 {
 template <typename T>
 concept EnumClass = std::is_enum_v<T>;
@@ -23,4 +23,4 @@ template <EnumClass FlagSet, Number OrType> OrType or_flags(const std::span<cons
 }
 
 std::string get_version() noexcept;
-} // namespace Utils
+} // namespace GFC::Utils
