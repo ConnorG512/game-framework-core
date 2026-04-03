@@ -27,6 +27,6 @@ public:
 
 private:
   std::ofstream file_{"application.log"};
-  std::uint32_t selected_types_{0};
+  std::uint8_t selected_types_{0};
 };
 } // namespace GFC::Logger
