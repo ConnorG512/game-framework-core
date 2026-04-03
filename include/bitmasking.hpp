@@ -16,7 +16,7 @@ MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
 {
   static_assert(sizeof(flags) >= sizeof(MaskSize));
 
-  const MaskSize final_bitmask = [flags] -> MaskSize
+  return [flags] -> MaskSize
   {
     MaskSize result{0};
     for (const auto &flag : flags)
@@ -24,8 +24,6 @@ MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
 
     return result;
   }();
-
-  return final_bitmask;
 }
 
 bool is_active_bit(std::integral auto bitcontainer, EnumType auto enum_flag) noexcept
