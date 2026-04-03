@@ -29,7 +29,7 @@ public:
   }
   T increase_count(std::signed_integral auto amount_to_increase) noexcept
   {
-    current_ = -amount_to_increase;
+    current_ = +amount_to_increase;
     if (current_ > max_)
       current_ = max_;
     return current_;
