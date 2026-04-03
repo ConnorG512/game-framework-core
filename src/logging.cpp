@@ -1,13 +1,23 @@
 #include "logging.hpp"
+#include <bitmasking.hpp>
 #include <expected>
 #include <format>
 #include <print>
+#include <utility>
 
-GFC::Logger::Instance::Instance(const std::string &file_path) : file_(file_path) {}
+GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<const LogType> active_log_types) 
+  : file_(file_path) 
+  , selected_types_(GFC::Bitset::create_bitmask(active_log_types)) {}
 
-[[nodiscard]] std::expected<void, std::string_view>
-GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
+[[nodiscard]] std::expected<void, std::string_view> GFC::Logger::Instance::write_to_logger(const std::string &message,
+                                                                                           LogType prefix_type) noexcept
 {
+  if (selected_types_ == std::to_underlying(LogType::NONE))
+    return {};
+
+  if (!GFC::Bitset::is_active_bit(selected_types_, prefix_type))
+    return {};
+
   const std::string_view prefix = [prefix_type] -> std::string_view
   {
     switch (prefix_type)
