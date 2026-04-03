@@ -4,12 +4,13 @@
 #include <span>
 #include <string>
 #include <vector>
+#include <cstdint>
 
 namespace GFC::Init
 {
 // Forward
 class Instance;
-enum class Flags;
+enum class Flags : std::uint32_t;
 //
 
 class Builder

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL3/SDL_init.h>
+#include <cstdint>
 #include <functional>
 #include <string>
 
@@ -10,7 +11,7 @@ namespace GFC::Init
 class Builder;
 //
 
-enum class Flags
+enum class Flags : std::uint32_t
 {
   AUDIO = SDL_INIT_AUDIO,
   VIDEO = SDL_INIT_VIDEO,
