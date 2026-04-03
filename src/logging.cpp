@@ -6,19 +6,19 @@
 GFC::Logger::Instance::Instance(const std::string &file_path) : file_(file_path) {}
 
 [[nodiscard]] std::expected<void, std::string_view>
-GFC::Logger::Instance::write_to_logger(const std::string &message, InfoType prefix_type) noexcept
+GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
 {
   const std::string_view prefix = [prefix_type] -> std::string_view
   {
     switch (prefix_type)
     {
-      case InfoType::ERROR:
+      case LogType::ERROR:
         return "ERROR";
-      case InfoType::WARNING:
+      case LogType::WARNING:
         return "WARNING";
-      case InfoType::DEBUG:
+      case LogType::DEBUG:
         return "DEBUG";
-      case InfoType::INFO:
+      case LogType::INFO:
         return "INFO";
       default:
         return "N/A";
