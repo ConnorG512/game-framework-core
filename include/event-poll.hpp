@@ -4,7 +4,7 @@
 
 #include <span>
 
-namespace Event
+namespace GFC::Event
 {
 void poll(bool finished, const std::span<const SDL_Event> event_list);
 }
