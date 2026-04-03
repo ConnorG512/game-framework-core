@@ -88,3 +88,9 @@ Window::Instance::get_min_size() const noexcept
   else
     return window_id;
 }
+
+[[nodiscard]] SDL_Window &Window::Instance::get_window_reference() noexcept
+{
+  assert(!window_instance_ && "window_instance_ is nullptr! Cannot get reference.");
+  return *window_instance_.get();
+}

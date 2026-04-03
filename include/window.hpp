@@ -50,7 +50,8 @@ public:
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_max_size() const noexcept;
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_min_size() const noexcept;
   [[nodiscard]] std::expected<SDL_WindowID, std::string> get_id() const noexcept;
-  
+  [[nodiscard]] SDL_Window &get_window_reference() noexcept;
+
   Instance(const std::string &title, std::pair<std::int32_t, std::int32_t> xy, const std::span<const Flags> flags);
 
 private:
