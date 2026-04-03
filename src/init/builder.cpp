@@ -32,7 +32,7 @@ GFC::Init::Builder &GFC::Init::Builder::set_flags(const std::span<const Flags> f
 }
 
 GFC::Init::Instance
-GFC::Init::Builder::build(std::function<void(const std::string &message)> log_callback = nullptr) const noexcept
+GFC::Init::Builder::build(std::function<void(const std::string &message)> log_callback = nullptr) const
 {
   return GFC::Init::Instance(*this, log_callback);
 }
