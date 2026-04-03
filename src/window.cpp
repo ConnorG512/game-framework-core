@@ -91,6 +91,6 @@ GFC::Window::Instance::get_min_size() const noexcept
 
 [[nodiscard]] SDL_Window &GFC::Window::Instance::get_window_reference() noexcept
 {
-  assert(!window_instance_ && "window_instance_ is nullptr! Cannot get reference.");
+  assert(window_instance_ && "window_instance_ is nullptr! Cannot get reference.");
   return *window_instance_.get();
 }
