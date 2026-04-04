@@ -10,14 +10,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(external/sdl3)
 
 add_library(${LIB_NAME} STATIC 
+  src/easy-window/builder.cpp
+  src/easy-window/instance.cpp
+
   src/init/builder.cpp
   src/init/instance.cpp
+
   src/event-poll.cpp
-  src/utils.cpp
-  src/window.cpp
-  src/logging.cpp
-  src/renderer.cpp
   src/filesystem.cpp
+  src/logging.cpp
+  src/utils.cpp
 )
 
 target_link_libraries(${LIB_NAME} PUBLIC
