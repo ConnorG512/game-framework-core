@@ -9,12 +9,14 @@
 namespace GFC::Bitset
 {
 template <typename T>
-concept EnumType = std::is_enum_v<T>;
+concept EnumType = std::is_enum_v<T> || std::is_integral_v<T>;
 
 template <EnumType EnumT, std::integral MaskSize = std::uint32_t>
 MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
 {
-  static_assert(sizeof(flags) >= sizeof(MaskSize));
+  if constexpr (std::is_enum_v<EnumT>) {
+    static_assert(sizeof(flags) >= sizeof(MaskSize));
+  }
 
   return [flags] -> MaskSize
   {
