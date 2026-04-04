@@ -22,7 +22,7 @@ MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
       for(const auto& flag : flags)
         result |= std::to_underlying(flag);
       return result;
-    };    
+    }();    
   } 
 
   if constexpr (std::is_integral_v<EnumT>){
@@ -31,7 +31,7 @@ MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
       for(const auto& flag : flags)
         result |= flag;
       return result;
-    };    
+    }();    
   }
 }
 
