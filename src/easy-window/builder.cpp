@@ -1,4 +1,5 @@
 #include "easy-window/builder.hpp"
+#include "easy-window/instance.hpp"
 #include "SDL3/SDL_video.h"
 
 GFC::EasyWindow::Builder& GFC::EasyWindow::Builder::set_window_title(const std::string& window_title) noexcept
@@ -48,4 +49,5 @@ GFC::EasyWindow::Builder& GFC::EasyWindow::Builder::set_high_pixel_density(const
 
 GFC::EasyWindow::Instance GFC::EasyWindow::Builder::build() const
 {
+  return GFC::EasyWindow::Instance(*this);
 }
