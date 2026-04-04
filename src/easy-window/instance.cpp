@@ -1,5 +1,6 @@
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_video.h"
+#include "bitmasking.hpp"
 #include "easy-window/builder.hpp"
 #include "easy-window/instance.hpp"
 
@@ -9,13 +10,7 @@
 
 GFC::EasyWindow::Instance::Instance(const EasyWindow::Builder &builder)
     : window_(SDL_CreateWindow(builder.window_title_.c_str(), builder.wh_.first, builder.wh_.second,
-                               [&]
-                               {
-                                 SDL_WindowFlags result{0};
-                                 for (const auto &flag : builder.flags)
-                                   result |= flag;
-                                 return result;
-                               }()),
+                               GFC::Bitset::create_bitmask<SDL_WindowFlags>(builder.flags)),
               &SDL_DestroyWindow),
       renderer_(SDL_CreateRenderer(window_.get(), nullptr), &SDL_DestroyRenderer) {};
 
@@ -94,7 +89,7 @@ GFC::EasyWindow::Instance::get_min_size() const noexcept
 
 void GFC::EasyWindow::Instance::draw(const Math::Vec4<float> &colors) noexcept
 {
-  for(const auto& color : {colors.x, colors.y, colors.z, colors.w})
+  for (const auto &color : {colors.x, colors.y, colors.z, colors.w})
     assert(color >= 0.0f && color <= 1.0f);
 
   SDL_SetRenderDrawColorFloat(renderer_.get(), colors.x, colors.y, colors.z, colors.w);
