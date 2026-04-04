@@ -5,12 +5,13 @@
 #include "easy-window/instance.hpp"
 
 #include <cassert>
+#include <cstdint>
 #include <format>
 #include <utility>
 
 GFC::EasyWindow::Instance::Instance(const EasyWindow::Builder &builder)
     : window_(SDL_CreateWindow(builder.window_title_.c_str(), builder.wh_.first, builder.wh_.second,
-                               GFC::Bitset::create_bitmask<SDL_WindowFlags>(builder.flags)),
+                               GFC::Bitset::create_bitmask<SDL_WindowFlags, std::uint64_t>(builder.flags)),
               &SDL_DestroyWindow),
       renderer_(SDL_CreateRenderer(window_.get(), nullptr), &SDL_DestroyRenderer) {};
 
