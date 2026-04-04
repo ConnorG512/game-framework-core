@@ -16,16 +16,23 @@ MaskSize create_bitmask(const std::span<const EnumT> flags) noexcept
 {
   if constexpr (std::is_enum_v<EnumT>) {
     static_assert(sizeof(flags) >= sizeof(MaskSize));
+    
+    return [&]{
+      MaskSize result{0};
+      for(const auto& flag : flags)
+        result |= std::to_underlying(flag);
+      return result;
+    };    
+  } 
+
+  if constexpr (std::is_integral_v<EnumT>){
+    return [&]{
+      MaskSize result{0};
+      for(const auto& flag : flags)
+        result |= flag;
+      return result;
+    };    
   }
-
-  return [flags] -> MaskSize
-  {
-    MaskSize result{0};
-    for (const auto &flag : flags)
-      result |= std::to_underlying(flag);
-
-    return result;
-  }();
 }
 
 bool is_active_bit(std::integral auto bitcontainer, EnumType auto enum_flag) noexcept
