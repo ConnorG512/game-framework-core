@@ -16,10 +16,6 @@ class Instance
 public:
   Instance(const EasyWindow::Builder &builder);
 
-private:
-  std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_{nullptr, &SDL_DestroyWindow};
-  std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> renderer_{nullptr, &SDL_DestroyRenderer};
-
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
   get_current_window_size() const noexcept;
 
@@ -31,7 +27,11 @@ private:
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string> get_min_size() const noexcept;
 
   [[nodiscard]] std::expected<SDL_WindowID, std::string> get_id() const noexcept;
-  
+
   void draw(const Math::Vec4<float> &colors) noexcept;
+
+private:
+  std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_{nullptr, &SDL_DestroyWindow};
+  std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> renderer_{nullptr, &SDL_DestroyRenderer};
 };
 }; // namespace GFC::EasyWindow
