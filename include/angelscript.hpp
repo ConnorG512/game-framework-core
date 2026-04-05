@@ -9,15 +9,24 @@ namespace Logger
 class Instance;
 }
 
-class Angel
+namespace Angel
+{
+struct ExportedFunction
+{
+  const char *declaration{nullptr};
+  void *address{nullptr};
+};
+
+class Engine
 {
 public:
-  Angel(GFC::Logger::Instance *logger);
-  Angel() = default;
-  ~Angel();
+  Engine(GFC::Logger::Instance *logger);
+  Engine() = default;
+  ~Engine();
 
 private:
   asIScriptEngine *engine_{asCreateScriptEngine()};
   GFC::Logger::Instance *logger_{nullptr};
 };
+} // namespace Angel
 } // namespace GFC
