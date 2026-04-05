@@ -5,6 +5,17 @@
 #include <print>
 #include <utility>
 
+namespace {
+  bool is_at_max_log_count(std::uint64_t current_log_count, std::uint64_t max_log_count)
+  {
+    // 0 indicates no limit. 
+    if(max_log_count == 0)
+      return false; 
+    
+    return (current_log_count >= max_log_count);
+  }
+}
+
 GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<const LogType> active_log_types) 
   : file_(file_path) 
   , selected_types_(GFC::Bitset::create_bitmask(active_log_types)) {}
