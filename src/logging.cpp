@@ -56,5 +56,6 @@ GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<co
   }
 
   std::println(file_, "{}: {}", get_logging_prefix(prefix_type), message);
+  current_write_count_ ++;
   return {};
 }
