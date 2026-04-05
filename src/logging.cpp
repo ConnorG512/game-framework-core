@@ -35,8 +35,10 @@ namespace
 }
 } // namespace
 
-GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<const LogType> active_log_types)
-    : file_(file_path), selected_types_(GFC::Bitset::create_bitmask(active_log_types))
+GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<const LogType> active_log_types,
+                                const std::uint64_t max_write_count)
+    : file_(file_path), max_write_count_(max_write_count),
+      selected_types_(GFC::Bitset::create_bitmask(active_log_types))
 {
 }
 
@@ -46,8 +48,8 @@ GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<co
   if (selected_types_ == std::to_underlying(LogType::NONE) ||
       !GFC::Bitset::is_active_bit(selected_types_, prefix_type) || !file_.is_open())
     return {};
-  
-  if(is_at_max_log_count(current_write_count_, max_write_count_))
+
+  if (is_at_max_log_count(current_write_count_, max_write_count_))
   {
     std::println(file_, "Log has hit maximum output count of [{}]. Closing log.", max_write_count_);
     file_.close();
