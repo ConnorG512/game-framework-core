@@ -17,7 +17,7 @@ void register_function(asIScriptEngine *engine, const std::span<const GFC::Angel
   }
 
   if (logger)
-    logger->write_to_logger(std::format("Declared {} functions to regiser to anglescript.", angel_funcs.size()),
+    logger->write_to_logger(std::format("Declared {} functions to regiser to Angelscript.", angel_funcs.size()),
                             GFC::Logger::LogType::DEBUG);
 
   for (const auto &func : angel_funcs)
