@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Submodules:
 add_subdirectory(external/sdl3)
+add_subdirectory(external/angelscript)
 
 add_library(${LIB_NAME} STATIC 
   src/easy-window/builder.cpp
