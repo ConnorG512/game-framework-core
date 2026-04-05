@@ -24,8 +24,7 @@ public:
   explicit Instance(const std::string &file_path, const std::span<const LogType> active_log_types,
                     const std::uint64_t max_write_count = 0);
 
-  [[nodiscard]] std::expected<void, std::string_view> write_to_logger(const std::string &message,
-                                                                      LogType prefix_type) noexcept;
+  void write_to_logger(const std::string &message, LogType prefix_type) noexcept;
 
 private:
   std::ofstream file_{"application.log"};

@@ -42,12 +42,11 @@ GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<co
 {
 }
 
-[[nodiscard]] std::expected<void, std::string_view> GFC::Logger::Instance::write_to_logger(const std::string &message,
-                                                                                           LogType prefix_type) noexcept
+void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
 {
   if (selected_types_ == std::to_underlying(LogType::NONE) ||
       !GFC::Bitset::is_active_bit(selected_types_, prefix_type) || !file_.is_open())
-    return {};
+    return;
 
   if (is_at_max_log_count(current_write_count_, max_write_count_))
   {
@@ -56,6 +55,6 @@ GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<co
   }
 
   std::println(file_, "{}: {}", get_logging_prefix(prefix_type), message);
-  current_write_count_ ++;
-  return {};
+  current_write_count_++;
+  return;
 }
