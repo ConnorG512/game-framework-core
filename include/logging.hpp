@@ -5,17 +5,26 @@
 #include <fstream>
 #include <limits>
 #include <string_view>
+#include <utility>
 
 namespace GFC::Logger
 {
 enum class LogType : std::uint8_t
 {
-  NONE = 0,
+  // BitFlags:
   ERROR = 1,
   WARNING = 2,
   DEBUG = 4,
   INFO = 8,
+  ANGEL_INFO = 16,
+  ANGEL_ERROR = 32,
+
+  // Presets:
   ALL = 0xFF,
+  NONE = 0,
+  ENGINE = ERROR | WARNING | DEBUG | INFO,
+  ANGEL = ANGEL_INFO | ANGEL_ERROR,
+  BASIC = ERROR | WARNING | ANGEL_ERROR,
 };
 
 class Instance
