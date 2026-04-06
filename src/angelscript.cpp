@@ -9,14 +9,14 @@ namespace
 void register_function(asIScriptEngine *engine, const std::span<const GFC::Angel::ExportedFunction> angel_funcs,
                        GFC::Logger::Instance *logger = nullptr)
 {
-  assert(engine);
+  assert(engine != nullptr);
   for (const auto &func : angel_funcs)
   {
-    assert(func.declaration);
-    assert(func.address);
+    assert(func.declaration != nullptr);
+    assert(func.address != nullptr);
   }
 
-  if (logger)
+  if (logger != nullptr)
     logger->write_to_logger(std::format("Declared {} functions to regiser to Angelscript.", angel_funcs.size()),
                             GFC::Logger::LogType::DEBUG);
 
