@@ -28,6 +28,10 @@ namespace
       return "DEBUG";
     case GFC::Logger::LogType::INFO:
       return "INFO";
+    case GFC::Logger::LogType::ANGEL_INFO:
+      return "ANGEL INFO";
+    case GFC::Logger::LogType::ANGEL_ERROR:
+      return "ANGEL ERROR";
     default:
       return "N/A";
   }
