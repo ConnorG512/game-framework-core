@@ -43,6 +43,8 @@ GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<co
     : file_(file_path), max_write_count_(max_write_count),
       selected_types_(GFC::Bitset::create_bitmask(active_log_types))
 {
+  if (max_write_count_ == 0)
+    write_to_logger("Maximum log count has been disabled.", Logger::LogType::INFO);
 }
 
 void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
