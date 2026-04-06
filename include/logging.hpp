@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <fstream>
 #include <limits>
+#include <utility>
 
 namespace GFC::Logger
 {
@@ -36,6 +37,6 @@ private:
   std::ofstream file_{"application.log"};
   std::uint64_t current_write_count_{0};
   std::uint64_t max_write_count_{std::numeric_limits<decltype(max_write_count_)>::max()};
-  std::uint8_t selected_types_{0};
+  std::uint8_t selected_types_{std::to_underlying(LogType::BASIC)};
 };
 } // namespace GFC::Logger
