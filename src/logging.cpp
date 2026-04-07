@@ -34,7 +34,7 @@ namespace
     case GFC::Logger::LogType::ANGEL_ERROR:
       return "ANGEL ERROR";
     default:
-      return "N/A";
+      return "INVALID LOG USE";
   }
 }
 } // namespace
