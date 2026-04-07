@@ -23,7 +23,7 @@ enum class LogType : std::uint8_t
   NONE = 0,
   ENGINE = ERROR | WARNING | DEBUG | INFO,
   ANGEL = ANGEL_INFO | ANGEL_ERROR,
-  BASIC = ERROR | WARNING | ANGEL_ERROR,
+  BASIC = ERROR | ANGEL_ERROR,
 };
 
 class Instance
