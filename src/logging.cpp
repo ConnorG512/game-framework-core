@@ -46,6 +46,8 @@ GFC::Logger::Instance::Instance(const std::string &file_name, const std::span<co
 {
   if (max_write_count_ == 0)
     write_to_logger("Maximum log count has been disabled.", Logger::LogType::INFO);
+  else 
+    write_to_logger(std::format("Logger max count has been set to: {}.", max_write_count_), Logger::LogType::INFO);
 }
 
 void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
