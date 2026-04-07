@@ -28,7 +28,7 @@ enum class LogType : std::uint8_t
 class Instance
 {
 public:
-  explicit Instance(const std::string &file_path, const std::span<const LogType> active_log_types,
+  explicit Instance(const std::string &file_name, const std::span<const LogType> active_log_types,
                     const std::uint64_t max_write_count = 0);
 
   void write_to_logger(const std::string &message, LogType prefix_type) noexcept;

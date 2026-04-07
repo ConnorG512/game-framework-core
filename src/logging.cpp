@@ -38,9 +38,9 @@ namespace
 }
 } // namespace
 
-GFC::Logger::Instance::Instance(const std::string &file_path, const std::span<const LogType> active_log_types,
+GFC::Logger::Instance::Instance(const std::string &file_name, const std::span<const LogType> active_log_types,
                                 const std::uint64_t max_write_count)
-    : file_(file_path), max_write_count_(max_write_count),
+    : file_(file_name), max_write_count_(max_write_count),
       selected_types_(GFC::Bitset::create_bitmask(active_log_types))
 {
   if (max_write_count_ == 0)
