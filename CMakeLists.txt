@@ -103,6 +103,9 @@ add_library(game-framework-core STATIC
   src/easy-window/builder.cpp
   src/easy-window/instance.cpp
 
+  src/filesystem/filesystem-linux.cpp
+  src/filesystem/utils.cpp
+
   src/init/builder.cpp
   src/init/instance.cpp
   
