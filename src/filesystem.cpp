@@ -12,3 +12,8 @@ GFC::Filesystem::Instance::Instance(const std::string &program_dir_name)
   if (!std::filesystem::exists(program_dir_path_))
     std::filesystem::create_directory(program_dir_path_);
 }
+
+const std::filesystem::path &GFC::Filesystem::Instance::get_directory_path() const noexcept
+{
+  return program_dir_path_;
+}

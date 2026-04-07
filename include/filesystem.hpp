@@ -9,7 +9,7 @@ class Instance
 {
 public:
   explicit Instance(const std::string &program_dir_name);
-  const std::string &get_directory_path() const noexcept;
+  const std::filesystem::path &get_directory_path() const noexcept;
 
 private:
   std::filesystem::path program_dir_path_{};
