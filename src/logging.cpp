@@ -1,5 +1,6 @@
 #include "logging.hpp"
 #include <bitmasking.hpp>
+#include <cassert>
 #include <format>
 #include <print>
 #include <string_view>
@@ -49,6 +50,9 @@ GFC::Logger::Instance::Instance(const std::string &file_name, const std::span<co
 
 void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
 {
+  for(const auto log_type : {LogType::ALL, LogType::NONE, LogType::ANGEL, LogType::ENGINE, LogType::BASIC})
+    assert(prefix_type != log_type && "Log type provided for writing to logger should not be a preset!");
+
   if (selected_types_ == std::to_underlying(LogType::NONE) ||
       !GFC::Bitset::is_active_bit(selected_types_, prefix_type) || !file_.is_open())
     return;
