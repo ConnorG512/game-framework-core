@@ -35,7 +35,7 @@ public:
   void write_to_logger(const std::string &message, LogType prefix_type) noexcept;
 
 private:
-  std::ofstream file_{"application.log"};
+  std::ofstream file_{"application.log", std::ios::trunc};
   std::uint64_t current_write_count_{0};
   std::uint64_t max_write_count_{std::numeric_limits<decltype(max_write_count_)>::max()};
   std::uint8_t selected_types_{std::to_underlying(LogType::BASIC)};

@@ -41,7 +41,7 @@ namespace
 
 GFC::Logger::Instance::Instance(const std::filesystem::path &path, const std::span<const LogType> active_log_types,
                                 const std::uint64_t max_write_count)
-    : file_(std::filesystem::path(path / "application.log")), max_write_count_(max_write_count),
+    : file_(std::filesystem::path(path / "application.log"), std::ios::trunc), max_write_count_(max_write_count),
       selected_types_(GFC::Bitset::create_bitmask(active_log_types))
 {
   if (max_write_count_ == 0)
