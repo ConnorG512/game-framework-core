@@ -111,7 +111,6 @@ add_library(game-framework-core STATIC
   
   src/angelscript.cpp
   src/event-poll.cpp
-  src/filesystem.cpp
   src/logging.cpp
   src/utils.cpp
 )
