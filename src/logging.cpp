@@ -39,20 +39,20 @@ namespace
 }
 } // namespace
 
-GFC::Logger::Instance::Instance(const std::string &file_name, const std::span<const LogType> active_log_types,
+GFC::Logger::Instance::Instance(const std::filesystem::path &path, const std::span<const LogType> active_log_types,
                                 const std::uint64_t max_write_count)
-    : file_(file_name), max_write_count_(max_write_count),
+    : file_(std::filesystem::path(path / "application.log")), max_write_count_(max_write_count),
       selected_types_(GFC::Bitset::create_bitmask(active_log_types))
 {
   if (max_write_count_ == 0)
     write_to_logger("Maximum log count has been disabled.", Logger::LogType::INFO);
-  else 
+  else
     write_to_logger(std::format("Logger max count has been set to: {}.", max_write_count_), Logger::LogType::INFO);
 }
 
 void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType prefix_type) noexcept
 {
-  for(const auto log_type : {LogType::ALL, LogType::NONE, LogType::ANGEL, LogType::ENGINE, LogType::BASIC})
+  for (const auto log_type : {LogType::ALL, LogType::NONE, LogType::ANGEL, LogType::ENGINE, LogType::BASIC})
     assert(prefix_type != log_type && "Log type provided for writing to logger should not be a preset!");
 
   if (selected_types_ == std::to_underlying(LogType::NONE) ||
