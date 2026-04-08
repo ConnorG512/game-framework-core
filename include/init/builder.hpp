@@ -1,11 +1,20 @@
 #pragma once
 
+#include <cstdint>
 #include <span>
 #include <string>
 #include <vector>
-#include <cstdint>
 
-namespace GFC::Init
+namespace GFC
+{
+// Forward
+namespace Logger
+{
+class Instance;
+}
+//
+
+namespace Init
 {
 // Forward
 class Instance;
@@ -21,7 +30,7 @@ public:
   Builder &set_app_version(const char *version) noexcept;
   Builder &set_app_identifier(const char *id) noexcept;
   Builder &set_flags(const std::span<const Flags> flags) noexcept;
-  Init::Instance build() const;
+  Init::Instance build(GFC::Logger::Instance *logger = nullptr) const;
 
 private:
   std::string app_name_{"Application"};
@@ -29,4 +38,5 @@ private:
   std::string app_identifier_{"com.example.application"};
   std::vector<Flags> flags_{};
 };
-} // namespace GFC::Init
+} // namespace Init
+} // namespace GFC

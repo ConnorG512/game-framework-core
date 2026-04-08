@@ -32,7 +32,7 @@ GFC::Init::Builder &GFC::Init::Builder::set_flags(const std::span<const Flags> f
 }
 
 GFC::Init::Instance
-GFC::Init::Builder::build() const
+GFC::Init::Builder::build(GFC::Logger::Instance *logger) const
 {
-  return GFC::Init::Instance(*this);
+  return GFC::Init::Instance(*this, logger);
 }
