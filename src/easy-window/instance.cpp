@@ -18,8 +18,8 @@ GFC::EasyWindow::Instance::Instance(const EasyWindow::Builder &builder, GFC::Log
 {
   if (logger != nullptr)
   {
-    logger->write_to_logger(std::format("{}: {}", "Window Title", builder.window_title_), GFC::Logger::LogType::DEBUG);
-    logger->write_to_logger(std::format("Width: {} Height: {}.", "Window Title", builder.wh_.first, builder.wh_.second),
+    logger->write_to_logger(std::format("Window Title: {}.", builder.window_title_), GFC::Logger::LogType::DEBUG);
+    logger->write_to_logger(std::format("Width: {}, Height: {}.", builder.wh_.first, builder.wh_.second),
                             GFC::Logger::LogType::DEBUG);
   }
 };
