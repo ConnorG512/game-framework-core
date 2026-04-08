@@ -2,10 +2,17 @@
 
 #include <SDL3/SDL_init.h>
 #include <cstdint>
-#include <functional>
-#include <string>
 
-namespace GFC::Init
+namespace GFC
+{
+// Forward
+namespace Logger
+{
+class Instance;
+}
+//
+
+namespace Init
 {
 // Forward
 class Builder;
@@ -26,7 +33,8 @@ enum class Flags : std::uint32_t
 class Instance
 {
 public:
-  Instance(const GFC::Init::Builder &builder, std::function<void(const std::string &message)> log_callback);
+  explicit Instance(const GFC::Init::Builder &builder, GFC::Logger::Instance *logger = nullptr);
   ~Instance();
 };
-} // namespace GFC::Init
+} // namespace Init
+} // namespace GFC
