@@ -29,7 +29,7 @@ public:
   EasyWindow::Builder &set_always_on_top(const bool is_always_on_top = false) noexcept;
   EasyWindow::Builder &set_maximized(const bool is_maximized = false) noexcept;
   EasyWindow::Builder &set_high_pixel_density(const bool using_high_pixel_density = false) noexcept;
-  EasyWindow::Instance build(GFC::Logger::Instance *logger) const;
+  EasyWindow::Instance build(GFC::Logger::Instance *logger = nullptr) const;
 
 private:
   std::string window_title_{};
