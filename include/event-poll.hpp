@@ -1,10 +1,16 @@
 #pragma once
 
-#include "SDL3/SDL_events.h"
-
-#include <span>
+// Forward
+namespace GFC
+{
+namespace EasyWindow
+{
+class Instance;
+}
+}; // namespace GFC
+//
 
 namespace GFC::Event
 {
-void poll(bool finished, const std::span<const SDL_Event> event_list);
+void start_loop(bool &finished, GFC::EasyWindow::Instance &window);
 }
