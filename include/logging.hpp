@@ -33,6 +33,7 @@ public:
                     const std::uint64_t max_write_count = 0);
 
   void write_to_logger(const std::string &message, LogType prefix_type) noexcept;
+  void flush() noexcept;
 
 private:
   std::ofstream file_{"application.log", std::ios::trunc};

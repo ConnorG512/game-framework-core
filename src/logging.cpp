@@ -69,3 +69,9 @@ void GFC::Logger::Instance::write_to_logger(const std::string &message, LogType 
   current_write_count_++;
   return;
 }
+
+void GFC::Logger::Instance::flush() noexcept
+{
+  assert(file_.is_open());
+  file_.flush();
+}
