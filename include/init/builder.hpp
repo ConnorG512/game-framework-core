@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 #include <span>
 #include <string>
 #include <vector>
@@ -22,7 +21,7 @@ public:
   Builder &set_app_version(const char *version) noexcept;
   Builder &set_app_identifier(const char *id) noexcept;
   Builder &set_flags(const std::span<const Flags> flags) noexcept;
-  Init::Instance build(std::function<void(const std::string &message)> log_callback) const;
+  Init::Instance build() const;
 
 private:
   std::string app_name_{"Application"};
