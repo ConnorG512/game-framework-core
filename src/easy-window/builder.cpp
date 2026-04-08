@@ -1,6 +1,7 @@
 #include "easy-window/builder.hpp"
 #include "easy-window/instance.hpp"
 #include "SDL3/SDL_video.h"
+#include "logging.hpp"
 
 GFC::EasyWindow::Builder& GFC::EasyWindow::Builder::set_window_title(const std::string& window_title) noexcept
 {
@@ -47,7 +48,7 @@ GFC::EasyWindow::Builder& GFC::EasyWindow::Builder::set_high_pixel_density(const
   return *this;
 }
 
-GFC::EasyWindow::Instance GFC::EasyWindow::Builder::build() const
+GFC::EasyWindow::Instance GFC::EasyWindow::Builder::build(GFC::Logger::Instance *logger) const
 {
-  return GFC::EasyWindow::Instance(*this);
+  return GFC::EasyWindow::Instance(*this, logger);
 }

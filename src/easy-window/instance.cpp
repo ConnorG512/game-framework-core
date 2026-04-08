@@ -3,17 +3,26 @@
 #include "bitmasking.hpp"
 #include "easy-window/builder.hpp"
 #include "easy-window/instance.hpp"
+#include "logging.hpp"
 
 #include <cassert>
 #include <cstdint>
 #include <format>
 #include <utility>
 
-GFC::EasyWindow::Instance::Instance(const EasyWindow::Builder &builder)
+GFC::EasyWindow::Instance::Instance(const EasyWindow::Builder &builder, GFC::Logger::Instance *logger)
     : window_(SDL_CreateWindow(builder.window_title_.c_str(), builder.wh_.first, builder.wh_.second,
                                GFC::Bitset::create_bitmask<SDL_WindowFlags, std::uint64_t>(builder.flags)),
               &SDL_DestroyWindow),
-      renderer_(SDL_CreateRenderer(window_.get(), nullptr), &SDL_DestroyRenderer) {};
+      renderer_(SDL_CreateRenderer(window_.get(), nullptr), &SDL_DestroyRenderer)
+{
+  if (logger != nullptr)
+  {
+    logger->write_to_logger(std::format("{}: {}", "Window Title", builder.window_title_), GFC::Logger::LogType::DEBUG);
+    logger->write_to_logger(std::format("Width: {} Height: {}.", "Window Title", builder.wh_.first, builder.wh_.second),
+                            GFC::Logger::LogType::DEBUG);
+  }
+};
 
 [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
 GFC::EasyWindow::Instance::get_current_window_size() const noexcept
