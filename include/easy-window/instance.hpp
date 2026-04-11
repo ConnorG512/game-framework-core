@@ -7,20 +7,24 @@
 #include <expected>
 #include <memory>
 
+// Forward
 namespace GFC
 {
 namespace Logger
 {
 class Instance;
 }
-namespace EasyWindow
-{
-class Builder; // Forward
+class Builder;
 
+} // namespace GFC
+//
+
+namespace GFC::EasyWindow
+{
 class Instance
 {
 public:
-  Instance(const EasyWindow::Builder &builder, Logger::Instance *logger = nullptr);
+  Instance(const Builder &builder, Logger::Instance *logger = nullptr);
 
   [[nodiscard]] std::expected<std::pair<std::int32_t, std::int32_t>, std::string>
   get_current_window_size() const noexcept;
@@ -40,5 +44,4 @@ private:
   std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window_{nullptr, &SDL_DestroyWindow};
   std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> renderer_{nullptr, &SDL_DestroyRenderer};
 };
-} // namespace GFC::EasyWindow
-}; // namespace GFC
+}; // namespace GFC::EasyWindow
