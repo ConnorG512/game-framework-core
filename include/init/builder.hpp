@@ -5,10 +5,14 @@
 #include <string>
 #include <vector>
 
+// Forward
 namespace GFC
 {
-// Forward
 namespace Logger
+{
+class Instance;
+}
+namespace Init
 {
 class Instance;
 }
@@ -16,10 +20,7 @@ class Instance;
 
 namespace Init
 {
-// Forward
-class Instance;
 enum class Flags : std::uint32_t;
-//
 
 class Builder
 {
