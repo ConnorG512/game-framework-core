@@ -3,21 +3,23 @@
 #include <SDL3/SDL_init.h>
 #include <cstdint>
 
+// Forward
 namespace GFC
 {
-// Forward
 namespace Logger
 {
 class Instance;
 }
 //
-
 namespace Init
 {
-// Forward
 class Builder;
+}
+} // namespace GFC
 //
 
+namespace GFC::Init
+{
 enum class Flags : std::uint32_t
 {
   AUDIO = SDL_INIT_AUDIO,
@@ -36,5 +38,4 @@ public:
   explicit Instance(const GFC::Init::Builder &builder, GFC::Logger::Instance *logger = nullptr);
   ~Instance();
 };
-} // namespace Init
-} // namespace GFC
+} // namespace GFC::Init
