@@ -2,12 +2,14 @@
 
 #include <angelscript.h>
 
+// Forward
 namespace GFC
 {
 namespace Logger
 {
 class Instance;
 }
+//
 
 namespace Angel
 {
