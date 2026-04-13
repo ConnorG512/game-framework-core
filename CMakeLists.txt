@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Submodules:
 add_subdirectory(external/sdl3)
 add_subdirectory(external/volk)
+add_subdirectory(external/vulkan-memory-allocator)
 
 # Angel script:
 set(ANGEL_SOURCE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/angelscript/source")
@@ -123,6 +124,7 @@ target_link_libraries(game-framework-core PUBLIC
   SDL3::SDL3
   angelscript
   volk::volk
+  GPUOpen::VulkanMemoryAllocator
 )
 target_include_directories(game-framework-core PUBLIC 
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
