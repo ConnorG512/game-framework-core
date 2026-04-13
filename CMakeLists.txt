@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Submodules:
 add_subdirectory(external/sdl3)
+add_subdirectory(external/volk)
 
 # Angel script:
 set(ANGEL_SOURCE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/angelscript/source")
@@ -98,6 +99,8 @@ target_include_directories(angelscript PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/add_on/weakref"
 )
 
+
+
 # Game Framework:
 add_library(game-framework-core STATIC 
   src/easy-window/builder.cpp
@@ -119,9 +122,10 @@ target_link_libraries(game-framework-core PUBLIC
   # Libraries:
   SDL3::SDL3
   angelscript
+  volk::volk
 )
 target_include_directories(game-framework-core PUBLIC 
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-install(TARGETS game-framework-core RUNTIME DESTINATION bin)
+# install(TARGETS game-framework-core RUNTIME DESTINATION bin)
