@@ -48,6 +48,8 @@
         clang-tools
         cmake 
         ninja
+
+        vulkan-headers.out
       ] ++ [sdl3ConfigDeps debugTools];
 
       shellHook = ''
