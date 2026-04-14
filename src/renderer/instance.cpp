@@ -70,6 +70,6 @@ GFC::Ren::load_shader(const std::filesystem::path &path, VkDevice device, GFC::L
 
   if (vkCreateShaderModule(device, &createInfo, nullptr, &shader_module) != VK_SUCCESS)
     return std::unexpected(ShaderLoadError::FAILED_TO_CREATE_SHADER_MODULE);
-
-  return shader_module;
+  else
+    return shader_module;
 }
