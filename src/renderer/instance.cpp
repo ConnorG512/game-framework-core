@@ -3,6 +3,7 @@
 
 #include <VkBootstrap.h>
 #include <cassert>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
@@ -11,6 +12,11 @@
 #include <stdexcept>
 #include <string>
 #include <vulkan/vulkan_core.h>
+
+namespace
+{
+auto get_shader_code_size = [](const std::integral auto file_size) { return file_size * sizeof(std::uint32_t); };
+} // namespace
 
 void GFC::Ren::init(const EasyWindow::Instance &window, Logger::Instance *logger)
 {
@@ -57,7 +63,7 @@ GFC::Ren::load_shader(const std::filesystem::path &path, VkDevice device, GFC::L
   const VkShaderModuleCreateInfo createInfo{
       .sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
       .pNext = nullptr,
-      .codeSize = shader_buffer.size() * sizeof(std::uint32_t),
+      .codeSize = get_shader_code_size(shader_buffer.size()),
       .pCode = shader_buffer.data(),
   };
   VkShaderModule shader_module{};
