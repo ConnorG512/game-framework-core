@@ -101,8 +101,6 @@ target_include_directories(angelscript PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/add_on/weakref"
 )
 
-
-
 # Game Framework:
 add_library(game-framework-core STATIC 
   src/easy-window/builder.cpp
