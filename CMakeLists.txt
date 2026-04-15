@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Submodules:
 add_subdirectory(external/sdl3)
+add_subdirectory(external/volk)
+add_subdirectory(external/vk-bootstrap)
+add_subdirectory(external/vulkan-memory-allocator)
 
 # Angel script:
 set(ANGEL_SOURCE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/angelscript/source")
@@ -98,6 +101,8 @@ target_include_directories(angelscript PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/add_on/weakref"
 )
 
+
+
 # Game Framework:
 add_library(game-framework-core STATIC 
   src/easy-window/builder.cpp
@@ -109,6 +114,12 @@ add_library(game-framework-core STATIC
   src/init/builder.cpp
   src/init/instance.cpp
   
+  src/input/input.cpp
+
+  src/renderer/instance.cpp
+  src/renderer/utils.cpp
+  src/renderer/vk-exec.cpp
+  
   src/angelscript.cpp
   src/event-poll.cpp
   src/logging.cpp
@@ -119,9 +130,12 @@ target_link_libraries(game-framework-core PUBLIC
   # Libraries:
   SDL3::SDL3
   angelscript
+  volk::volk
+  vk-bootstrap::vk-bootstrap
+  GPUOpen::VulkanMemoryAllocator
 )
 target_include_directories(game-framework-core PUBLIC 
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-install(TARGETS game-framework-core RUNTIME DESTINATION bin)
+# install(TARGETS game-framework-core RUNTIME DESTINATION bin)
