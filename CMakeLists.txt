@@ -126,6 +126,16 @@ add_library(game-framework-core STATIC
   src/utils.cpp
 )
 
+if(WIN32)
+  add_library(game-framework-core STATIC
+    src/filesystem-windows.cpp
+  )
+elseif(LINUX)
+  add_library(game-framework-core STATIC
+    src/filesystem-linux.cpp
+  )
+endif()
+
 target_link_libraries(game-framework-core PUBLIC
   # Libraries:
   SDL3::SDL3
