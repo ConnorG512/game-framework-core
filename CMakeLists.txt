@@ -114,6 +114,12 @@ add_library(game-framework-core STATIC
   src/init/builder.cpp
   src/init/instance.cpp
   
+  src/input/input.cpp
+
+  src/renderer/instance.cpp
+  src/renderer/utils.cpp
+  src/renderer/vk-exec.cpp
+  
   src/angelscript.cpp
   src/event-poll.cpp
   src/logging.cpp
