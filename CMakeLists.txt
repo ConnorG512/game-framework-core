@@ -101,8 +101,6 @@ target_include_directories(angelscript PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/external/angelscript/sdk/add_on/weakref"
 )
 
-
-
 # Game Framework:
 add_library(game-framework-core STATIC 
   src/easy-window/builder.cpp
@@ -125,6 +123,16 @@ add_library(game-framework-core STATIC
   src/logging.cpp
   src/utils.cpp
 )
+
+if(WIN32)
+  add_library(game-framework-core STATIC
+    src/filesystem-windows.cpp
+  )
+elseif(LINUX)
+  add_library(game-framework-core STATIC
+    src/filesystem-linux.cpp
+  )
+endif()
 
 target_link_libraries(game-framework-core PUBLIC
   # Libraries:
